@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+//tạo interface có các phương thức mặc định
 @Service
 public interface PersonService {
     List<Person> getAll();

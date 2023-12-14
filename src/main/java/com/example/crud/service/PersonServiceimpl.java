@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 @Service
+//implement PersonService
 public class PersonServiceimpl implements PersonService {
+    //dùng lại biến personRepository(DI)
     @Autowired
     PersonRepository personRepository;
+    //ghi đè các phương thức của PersonService
     @Override
     public List<Person> getAll() {
         return (List<Person>) personRepository.findAll();

@@ -8,16 +8,31 @@
 <body>
 <div class="col-3"></div>
 <div class="container col-6">
+
     <h1>Manage User</h1>
+    <div class="search">
+        <form th:action="@{/search}" method="get">
+            <div class="search-input">
+                <input name="value" placeholder="Giá trị cần tìm" class="form-control">
+            </div>
+
+            <input type="submit" value="Search" class="btn btn-success">
+        </form>
+    </div>
+
     <table class="table table-active">
         <tr>
+            <th>ID</th>
             <th>Name</th>
+            <th>Age</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Actions</th>
         </tr>
         <tr th:each="person : ${persons}">
+            <td th:text="${person.id}"></td>
             <td th:text="${person.name}"></td>
+            <td th:text="${person.age}"></td>
             <td th:text="${person.email}"></td>
             <td th:text="${person.phone}"></td>
             <td>
