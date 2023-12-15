@@ -3,11 +3,11 @@ package com.example.crud.controller;
 import com.example.crud.person.Person;
 import com.example.crud.repository.PersonRepository;
 import com.example.crud.service.PersonService;
-import com.example.crud.service.PersonServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,17 +33,21 @@ public class PersonController {
         return "index";
     }
 
+
     @RequestMapping("/search")
     public String search(@RequestParam("value") String value,
                          Model model
                          ) {
+
         //tạo 1 list chứa các đối tượng person bằng thuộc tính getAll() của class crudRepository kế thừa
-        List<Person> persons = personRepository.search(value);
+        List<Person> persons =
+                personRepository.search(value);
         //thêm thuộc tính vào đối tượng model với key là persons và value là persons
-        model.addAttribute("persons", persons);
+        model.addAttribute("persons",persons);
 //trả về index.html
         return "index";
     }
+
     //mapping cho add
     @RequestMapping(value = "add")
     public String addPerson(Model model) {
