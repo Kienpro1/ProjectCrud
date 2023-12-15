@@ -20,10 +20,13 @@ public class PersonServiceimpl implements PersonService {
     @Autowired
     PersonRepository personRepository;
     //ghi đè các phương thức của PersonService
+
     @Override
-    public List<Person> getAll() {
-        return (List<Person>) personRepository.findAll();
+    public Page<Person> getAll(Integer pageNo) {
+    Pageable pageable = PageRequest.of(pageNo-1,5);
+        return this.personRepository.findAll(pageable);
     }
+
 
     @Override
     public void savePerson(Person person) {

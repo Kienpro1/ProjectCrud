@@ -24,11 +24,13 @@ public class PersonController {
     PersonRepository personRepository;
     //Map đến / cho trang index
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model,@RequestParam(name = "pageNo",defaultValue = "1") Integer pageNo) {
         //tạo 1 list chứa các đối tượng person bằng thuộc tính getAll() của class crudRepository kế thừa
-        List<Person> persons = personService.getAll();
+        Page<Person> persons = personService.getAll(pageNo);
         //thêm thuộc tính vào đối tượng model với key là persons và value là persons
         model.addAttribute("persons", persons);
+        model.addAttribute("totalPage", persons.getTotalPages());
+        model.addAttribute("currentPage",pageNo);
         //trả về index.html
         return "index";
     }
